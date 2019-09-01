@@ -8,7 +8,9 @@ import java.util.Set;
 
 public class HistorySystemService implements HistorySystem {
 
-    public void overwriteFileWithGivenResult(String filePath, Map<Character, Set<String>> characterWithAccordingWords, String sentence) {
+    public void overwriteFileWithGivenResult(String filePath,
+                                             Map<Character, Set<String>> characterWithAccordingWords,
+                                             String sentence) {
 
         try (FileWriter writer = new FileWriter(filePath, true);
              BufferedWriter bufferedWriter = new BufferedWriter(writer)) {

@@ -6,7 +6,7 @@ import java.util.Set;
 public class ConsoleMessages implements ApplicationMessages {
 
     @Override
-    public void askAboutSentence() {
+    public void askAboutInput() {
         System.out.println("Please, provide your sentence.");
     }
 

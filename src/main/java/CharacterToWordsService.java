@@ -1,19 +1,20 @@
 import historysystem.HistorySystem;
-import util.SentenceActions;
+import utils.SentenceUtils;
 import view.ApplicationMessages;
 
 import java.util.*;
 
-class WordsFetcherEngine {
+class CharacterToWordsService {
 
     private static final String FILE_PATH = "Result.txt";
+
     private final HistorySystem historySystem;
     private final WordContainingLetterMapCreator wordContainingLetterMapCreator;
     private final ApplicationMessages applicationMessages;
     private Scanner scanner;
 
-    WordsFetcherEngine(HistorySystem historySystem, ApplicationMessages applicationMessages,
-                       WordContainingLetterMapCreator wordContainingLetterMapCreator) {
+    CharacterToWordsService(HistorySystem historySystem, ApplicationMessages applicationMessages,
+                            WordContainingLetterMapCreator wordContainingLetterMapCreator) {
         this.historySystem = historySystem;
         this.applicationMessages = applicationMessages;
         this.wordContainingLetterMapCreator = wordContainingLetterMapCreator;
@@ -21,19 +22,18 @@ class WordsFetcherEngine {
     }
 
     void executeEngine() {
-        String sentence = getSentence();
+        String userInput = getUserInput();
 
-        String purifiedLowerCaseSentence = SentenceActions.getPurifiedLowerCaseSentence(sentence);
-        String[] splittedSentence = purifiedLowerCaseSentence.split("\\s");
+        String[] splitPurifiedLowerCaseSentence = SentenceUtils.getSplitPurifiedLowerCaseSentence(userInput);
         Map<Character, Set<String>> characterWithAccordingWord =
-                wordContainingLetterMapCreator.prepareCharacterWithAccordingWordsMap(splittedSentence);
+                wordContainingLetterMapCreator.prepareMapWithCharacterToAccordingWords(splitPurifiedLowerCaseSentence);
 
-        historySystem.overwriteFileWithGivenResult(FILE_PATH, characterWithAccordingWord, sentence);
+        historySystem.overwriteFileWithGivenResult(FILE_PATH, characterWithAccordingWord, userInput);
         applicationMessages.writeResult(characterWithAccordingWord);
     }
 
-    private String getSentence() {
-        applicationMessages.askAboutSentence();
+    private String getUserInput() {
+        applicationMessages.askAboutInput();
         return scanner.nextLine();
     }
 }

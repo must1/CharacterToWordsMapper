@@ -25,26 +25,24 @@ public class HistorySystemServiceTest {
 
     @Test
     public void overwriteFileWithGivenResult() throws IOException {
+        //given
         File rankingFile = tempFolder.newFile("History.txt");
         String rankingFilePath = rankingFile.getPath();
         Map<Character, Set<String>> actualMap = prepareActualMap();
         String sentence = "Ala ma.";
-
-        String[] actualResultBeforeOverwriting = retrieveRatesHistory(rankingFilePath);
-        String[] expectedResultBeforeOverwriting = {};
-
-        assertArrayEquals(expectedResultBeforeOverwriting, actualResultBeforeOverwriting);
-
+        String[] expectedResultAfterOverwriting =
+                {"The result for sentence: Ala ma.", "Result: {a=[ma, ala], l=[ala], m=[ma]}"};
+        //when
         historySystemService.overwriteFileWithGivenResult(rankingFilePath, actualMap, sentence);
 
-        String[] afterOverwriting = retrieveRatesHistory(rankingFilePath);
-        String[] expectedResultAfterOverwriting = {"The result for sentence: Ala ma.", "Result: {a=[ma, ala], l=[ala], m=[ma]}"};
+        String[] actualAfterOverwriting = retrieveHistory(rankingFilePath);
 
-        assertArrayEquals(expectedResultAfterOverwriting, afterOverwriting);
+        //then
+        assertArrayEquals(expectedResultAfterOverwriting, actualAfterOverwriting);
     }
 
 
-    private String[] retrieveRatesHistory(String rankingFilePath) {
+    private String[] retrieveHistory(String rankingFilePath) {
         try (Stream<String> contentFileStream = Files.lines(Paths.get(rankingFilePath))) {
             return contentFileStream.toArray(String[]::new);
         } catch (IOException e) {

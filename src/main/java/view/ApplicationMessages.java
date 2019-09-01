@@ -5,7 +5,7 @@ import java.util.Set;
 
 public interface ApplicationMessages {
 
-    void askAboutSentence();
+    void askAboutInput();
 
     void writeResult(Map<Character, Set<String>> characterWithAccordingString);
 }

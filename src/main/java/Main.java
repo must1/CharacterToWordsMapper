@@ -10,7 +10,12 @@ public class Main {
         ApplicationMessages applicationMessages = new ConsoleMessages();
         WordContainingLetterMapCreator wordContainingLetterMapCreator = new WordContainingLetterMapCreator();
 
-        WordsFetcherEngine wordsFetcherEngine = new WordsFetcherEngine(historySystemService, applicationMessages, wordContainingLetterMapCreator);
+        CharacterToWordsService wordsFetcherEngine = new CharacterToWordsService(
+                historySystemService,
+                applicationMessages,
+                wordContainingLetterMapCreator
+        );
+
         wordsFetcherEngine.executeEngine();
     }
 }
