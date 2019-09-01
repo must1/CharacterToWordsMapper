@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 public class WordContainingLetterMapCreatorTest {
 
-    private WordContainingLetterMapCreator wordContainingLetterMapCreator = new WordContainingLetterMapCreator();
+    private final WordContainingLetterMapCreator wordContainingLetterMapCreator = new WordContainingLetterMapCreator();
 
     @Test
     public void prepareCharacterWithAccordingWordsMapWithProperSentence() {
