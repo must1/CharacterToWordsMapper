@@ -8,8 +8,9 @@ public class Main {
 
         HistorySystem historySystemService = new HistorySystemService();
         ApplicationMessages applicationMessages = new ConsoleMessages();
+        WordContainingLetterMapCreator wordContainingLetterMapCreator = new WordContainingLetterMapCreator();
 
-        WordsFetcherEngine wordsFetcherEngine = new WordsFetcherEngine(historySystemService, applicationMessages);
+        WordsFetcherEngine wordsFetcherEngine = new WordsFetcherEngine(historySystemService, applicationMessages, wordContainingLetterMapCreator);
         wordsFetcherEngine.executeEngine();
     }
 }

@@ -12,9 +12,9 @@ public class HistorySystemService implements HistorySystem {
 
         try (FileWriter writer = new FileWriter(filePath, true);
              BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
-            bufferedWriter.write("The result for sentence" + sentence);
+            bufferedWriter.write("The result for sentence: " + sentence);
             bufferedWriter.newLine();
-            bufferedWriter.write("Average buying rate: " + characterWithAccordingWords);
+            bufferedWriter.write("Result: " + characterWithAccordingWords);
             bufferedWriter.newLine();
         } catch (IOException e) {
             e.printStackTrace();

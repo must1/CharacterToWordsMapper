@@ -8,12 +8,15 @@ class WordsFetcherEngine {
 
     private static final String FILE_PATH = "Result.txt";
     private final HistorySystem historySystem;
+    private final WordContainingLetterMapCreator wordContainingLetterMapCreator;
     private final ApplicationMessages applicationMessages;
     private Scanner scanner;
 
-    WordsFetcherEngine(HistorySystem historySystem, ApplicationMessages applicationMessages) {
+    WordsFetcherEngine(HistorySystem historySystem, ApplicationMessages applicationMessages,
+                       WordContainingLetterMapCreator wordContainingLetterMapCreator) {
         this.historySystem = historySystem;
         this.applicationMessages = applicationMessages;
+        this.wordContainingLetterMapCreator = wordContainingLetterMapCreator;
         scanner = new Scanner(System.in);
     }
 
@@ -23,16 +26,9 @@ class WordsFetcherEngine {
         String purifiedLowerCaseSentence = SentenceActions.getPurifiedLowerCaseSentence(sentence);
         Set<Character> characters = SentenceActions.getEveryCharacterOccurringInSentence(purifiedLowerCaseSentence);
         String[] splittedSentence = purifiedLowerCaseSentence.split("\\s");
-        Map<Character, Set<String>> characterWithAccordingWord = new LinkedHashMap<>();
+        Map<Character, Set<String>> characterWithAccordingWord =
+                wordContainingLetterMapCreator.prepareCharacterWithAccordingWordsMap(characters, splittedSentence);
 
-        for (char iteratedCharacter : characters) {
-            for (String iteratedWord : splittedSentence) {
-                if (iteratedWord.indexOf(iteratedCharacter) >= 0) {
-                    characterWithAccordingWord.computeIfAbsent(iteratedCharacter, k -> new TreeSet<>());
-                    characterWithAccordingWord.get(iteratedCharacter).add(iteratedWord);
-                }
-            }
-        }
         historySystem.overwriteFileWithGivenResult(FILE_PATH, characterWithAccordingWord, sentence);
         applicationMessages.writeResult(characterWithAccordingWord);
     }

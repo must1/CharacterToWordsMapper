@@ -1,0 +1,14 @@
+The result for sentence: Ala ma kota.
+Result: {a=[ala, kota, ma], t=[kota], k=[kota], l=[ala], m=[ma], o=[kota]}
+The result for sentence: Ala ma kota.
+Result: {a=[ala, kota, ma], l=[ala], m=[ma], k=[kota], o=[kota], t=[kota]}
+The result for sentence: Ala ma kota.
+Result: {a=[ala, kota, ma], k=[kota], l=[ala], m=[ma], o=[kota], t=[kota]}
+The result for sentence: ala ma kota, kod koduje w javie.
+Result: {a=[ala, javie, kota, ma], d=[kod, koduje], e=[javie, koduje], i=[javie], j=[javie, koduje], k=[kod, koduje, kota], l=[ala], m=[ma], o=[kod, koduje, kota], t=[kota], u=[koduje], v=[javie], w=[w]}
+The result for sentence: ala ma kota, kot koduje w javie.
+Result: {a=[ala, javie, kota, ma], d=[koduje], e=[javie, koduje], i=[javie], j=[javie, koduje], k=[koduje, kot, kota], l=[ala], m=[ma], o=[koduje, kot, kota], t=[kot, kota], u=[koduje], v=[javie], w=[w]}
+The result for sentence: Ala ma
+Result: {a=[ala, ma], l=[ala], m=[ma]}
+The result for sentence: Ala ma.
+Result: {a=[ala, ma], l=[ala], m=[ma]}
