@@ -24,10 +24,9 @@ class WordsFetcherEngine {
         String sentence = getSentence();
 
         String purifiedLowerCaseSentence = SentenceActions.getPurifiedLowerCaseSentence(sentence);
-        Set<Character> characters = SentenceActions.getEveryCharacterOccurringInSentence(purifiedLowerCaseSentence);
         String[] splittedSentence = purifiedLowerCaseSentence.split("\\s");
         Map<Character, Set<String>> characterWithAccordingWord =
-                wordContainingLetterMapCreator.prepareCharacterWithAccordingWordsMap(characters, splittedSentence);
+                wordContainingLetterMapCreator.prepareCharacterWithAccordingWordsMap(splittedSentence);
 
         historySystem.overwriteFileWithGivenResult(FILE_PATH, characterWithAccordingWord, sentence);
         applicationMessages.writeResult(characterWithAccordingWord);

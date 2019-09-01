@@ -8,9 +8,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -38,7 +38,7 @@ public class HistorySystemServiceTest {
         historySystemService.overwriteFileWithGivenResult(rankingFilePath, actualMap, sentence);
 
         String[] afterOverwriting = retrieveRatesHistory(rankingFilePath);
-        String[] expectedResultAfterOverwriting = {"The result for sentence: Ala ma.", "Result: {l=[ala], a=[ma, ala], m=[ma]}"};
+        String[] expectedResultAfterOverwriting = {"The result for sentence: Ala ma.", "Result: {a=[ma, ala], l=[ala], m=[ma]}"};
 
         assertArrayEquals(expectedResultAfterOverwriting, afterOverwriting);
     }
@@ -53,7 +53,7 @@ public class HistorySystemServiceTest {
     }
 
     private Map<Character, Set<String>> prepareActualMap() {
-        Map<Character, Set<String>> map = new LinkedHashMap<>();
+        Map<Character, Set<String>> map = new TreeMap<>();
         Set<String> lSet = Stream.of("ala").collect(Collectors.toSet());
         Set<String> aSet = Stream.of("ala", "ma").collect(Collectors.toSet());
         Set<String> mSet = Stream.of("ma").collect(Collectors.toSet());
