@@ -35,10 +35,8 @@ public class HistorySystemServiceTest {
         //when
         historySystemService.overwriteFileWithGivenResult(rankingFilePath, actualMap, sentence);
 
-        String[] actualAfterOverwriting = retrieveHistory(rankingFilePath);
-
         //then
-        assertArrayEquals(expectedResultAfterOverwriting, actualAfterOverwriting);
+        assertArrayEquals(expectedResultAfterOverwriting, retrieveHistory(rankingFilePath));
     }
 
 

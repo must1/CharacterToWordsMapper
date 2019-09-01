@@ -9,9 +9,9 @@ class WordContainingLetterMapCreator {
         for (String iteratedWord : splitSentence) {
 
             IntStream.range(0, iteratedWord.length())
-                    .forEach
-                            (j -> characterWithAccordingWord.computeIfAbsent(iteratedWord.charAt(j), k -> new TreeSet<>())
-                                    .add(iteratedWord));
+                    .forEach(j -> characterWithAccordingWord
+                            .computeIfAbsent(iteratedWord.charAt(j), k -> new TreeSet<>())
+                            .add(iteratedWord));
 
         }
         return characterWithAccordingWord;
