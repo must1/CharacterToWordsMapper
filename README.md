@@ -1,5 +1,7 @@
 # CharacterToWordsMapper
 
+[![Build Status](https://travis-ci.org/must1/WordsFetcher.svg?branch=master)](https://travis-ci.org/must1/WordsFetcher)
+
 Application that is mapping words to containing letters. Mapped words are sorted alphabetically, just like letters. 
 For example, given sentence: ala ma kota, kot koduje w Javie kota.
 - a: ala, javie , kota, ma
