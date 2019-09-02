@@ -1,6 +1,6 @@
 # CharacterToWordsMapper
 
-[![Build Status](https://travis-ci.org/must1/WordsFetcher.svg?branch=master)](https://travis-ci.org/must1/WordsFetcher)
+[![Build Status](https://travis-ci.org/must1/CharacterToWordsMapper.svg?branch=master)](https://travis-ci.org/must1/CharacterToWordsMapper)
 
 Application that is mapping words to containing letters. Mapped words are sorted alphabetically, just like letters. 
 
