@@ -22,12 +22,12 @@ public class CharacterToWordsMapCreatorTest {
         });
     }
 
-    private final CharacterToWordsMapCreator characterToWordsMapCreator;
+    private final CharacterToWordsMapper characterToWordsMapCreator;
     private final String[] givenWords;
     private final String expectedString;
 
     public CharacterToWordsMapCreatorTest(String[] givenWords, String expectedString) {
-        this.characterToWordsMapCreator = new CharacterToWordsMapCreator();
+        this.characterToWordsMapCreator = new CharacterToWordsMapper();
         this.givenWords = givenWords;
         this.expectedString = expectedString;
     }
@@ -43,7 +43,7 @@ public class CharacterToWordsMapCreatorTest {
         //given
         String sentence = ". / a";
         String expectedMapToString = "{a=[a]}";
-        String[] splitPurifiedLowerCaseSentence = SentenceUtils.getErasedFromPunctuationMarksSplitLowerCaseSentence(sentence);
+        String[] splitPurifiedLowerCaseSentence = SentenceUtils.purifySentence(sentence);
         //when
         Map<Character, Set<String>> map =
                 characterToWordsMapCreator.createMapWithCharacterToAccordingWords(splitPurifiedLowerCaseSentence);

@@ -7,5 +7,5 @@ public interface ApplicationMessages {
 
     void askAboutInput();
 
-    void writeResult(Map<Character, Set<String>> characterWithAccordingString);
+    void displayResult(Map<Character, Set<String>> characterWithAccordingString);
 }

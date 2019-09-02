@@ -1,4 +1,4 @@
-import historysystem.HistorySystem;
+import historysystem.ResultService;
 import utils.SentenceUtils;
 import view.ApplicationMessages;
 
@@ -8,13 +8,13 @@ class CharacterToWordsService {
 
     private static final String FILE_PATH = "Result.txt";
 
-    private final HistorySystem historySystem;
-    private final CharacterToWordsMapCreator wordContainingLetterMapCreator;
+    private final ResultService historySystem;
+    private final CharacterToWordsMapper wordContainingLetterMapCreator;
     private final ApplicationMessages applicationMessages;
     private Scanner scanner;
 
-    CharacterToWordsService(HistorySystem historySystem, ApplicationMessages applicationMessages,
-                            CharacterToWordsMapCreator wordContainingLetterMapCreator) {
+    CharacterToWordsService(ResultService historySystem, ApplicationMessages applicationMessages,
+                            CharacterToWordsMapper wordContainingLetterMapCreator) {
         this.historySystem = historySystem;
         this.applicationMessages = applicationMessages;
         this.wordContainingLetterMapCreator = wordContainingLetterMapCreator;
@@ -24,12 +24,12 @@ class CharacterToWordsService {
     void executeEngine() {
         String userInput = getUserInput();
 
-        String[] splitPurifiedLowerCaseSentence = SentenceUtils.getErasedFromPunctuationMarksSplitLowerCaseSentence(userInput);
+        String[] splitPurifiedLowerCaseSentence = SentenceUtils.purifySentence(userInput);
         Map<Character, Set<String>> characterWithAccordingWord =
                 wordContainingLetterMapCreator.createMapWithCharacterToAccordingWords(splitPurifiedLowerCaseSentence);
 
-        historySystem.overwriteFileWithGivenResult(FILE_PATH, characterWithAccordingWord, userInput);
-        applicationMessages.writeResult(characterWithAccordingWord);
+        historySystem.saveResult(FILE_PATH, characterWithAccordingWord, userInput);
+        applicationMessages.displayResult(characterWithAccordingWord);
     }
 
     private String getUserInput() {

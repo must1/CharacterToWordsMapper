@@ -1,7 +1,6 @@
 # CharacterToWordsMapper
 
-Application maps words to letters which contain. Mapped words are sorted alphabetically, just like letters. 
-
+Application that is mapping words to containing letters. Mapped words are sorted alphabetically, just like letters. 
 For example, given sentence: ala ma kota, kot koduje w Javie kota.
 - a: ala, javie , kota, ma
 - d: koduje

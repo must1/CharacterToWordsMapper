@@ -20,7 +20,7 @@ public class HistorySystemServiceTest {
     @Rule
     public TemporaryFolder tempFolder = new TemporaryFolder();
 
-    private HistorySystemService historySystemService = new HistorySystemService();
+    private ResultFileService historySystemService = new ResultFileService();
 
     @Test
     public void overwriteFileWithGivenResult() throws IOException {
@@ -32,7 +32,7 @@ public class HistorySystemServiceTest {
         String[] expectedResultAfterOverwriting =
                 {"The result for sentence: Ala ma.", "Result: {a=[ma, ala], l=[ala], m=[ma]}"};
         //when
-        historySystemService.overwriteFileWithGivenResult(rankingFilePath, actualMap, sentence);
+        historySystemService.saveResult(rankingFilePath, actualMap, sentence);
 
         //then
         assertArrayEquals(expectedResultAfterOverwriting, retrieveHistory(rankingFilePath));

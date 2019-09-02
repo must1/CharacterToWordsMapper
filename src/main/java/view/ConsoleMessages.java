@@ -11,7 +11,7 @@ public class ConsoleMessages implements ApplicationMessages {
     }
 
     @Override
-    public void writeResult(Map<Character, Set<String>> characterWithAccordingString) {
+    public void displayResult(Map<Character, Set<String>> characterWithAccordingString) {
         System.out.println("The result is: " + characterWithAccordingString);
     }
 }
