@@ -20,7 +20,7 @@ For example, given sentence: ala ma kota, kot koduje w Javie kota.
 After every run of application, it stores the sentence and the result in given file path. 
 
 Application uses:
-- Java 8
+- Java 9
 - JUnit
 - Travis CI
 - Lombok

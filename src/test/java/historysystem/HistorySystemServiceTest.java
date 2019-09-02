@@ -10,7 +10,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -49,14 +48,12 @@ public class HistorySystemServiceTest {
     }
 
     private Map<Character, Set<String>> prepareActualMap() {
-        Map<Character, Set<String>> map = new TreeMap<>();
         Set<String> lSet = Stream.of("ala").collect(Collectors.toSet());
         Set<String> aSet = Stream.of("ala", "ma").collect(Collectors.toSet());
         Set<String> mSet = Stream.of("ma").collect(Collectors.toSet());
-        map.put('l', lSet);
-        map.put('a', aSet);
-        map.put('m', mSet);
-        return map;
-    }
 
+        return Map.of('l', lSet,
+                      'a', aSet,
+                      'm', mSet);
+    }
 }
