@@ -1,4 +1,4 @@
-package historysystem;
+package resultservice;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

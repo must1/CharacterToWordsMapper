@@ -1,4 +1,4 @@
-package historysystem;
+package resultservice;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -10,36 +10,37 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.Assert.assertArrayEquals;
 
-public class HistorySystemServiceTest {
+public class ResultFileServiceTest {
 
     @Rule
     public TemporaryFolder tempFolder = new TemporaryFolder();
 
-    private ResultFileService historySystemService = new ResultFileService();
+    private ResultFileService resultFileService = new ResultFileService();
 
     @Test
-    public void overwriteFileWithGivenResult() throws IOException {
+    public void saveResultTest() throws IOException {
         //given
-        File rankingFile = tempFolder.newFile("History.txt");
+        File rankingFile = tempFolder.newFile("Result.txt");
         String rankingFilePath = rankingFile.getPath();
         Map<Character, Set<String>> actualMap = prepareActualMap();
         String sentence = "Ala ma.";
         String[] expectedResultAfterOverwriting =
                 {"The result for sentence: Ala ma.", "Result: {a=[ma, ala], l=[ala], m=[ma]}"};
         //when
-        historySystemService.saveResult(rankingFilePath, actualMap, sentence);
+        resultFileService.saveResult(rankingFilePath, actualMap, sentence);
 
         //then
-        assertArrayEquals(expectedResultAfterOverwriting, retrieveHistory(rankingFilePath));
+        assertArrayEquals(expectedResultAfterOverwriting, retrieveResult(rankingFilePath));
     }
 
 
-    private String[] retrieveHistory(String rankingFilePath) {
+    private String[] retrieveResult(String rankingFilePath) {
         try (Stream<String> contentFileStream = Files.lines(Paths.get(rankingFilePath))) {
             return contentFileStream.toArray(String[]::new);
         } catch (IOException e) {
@@ -48,12 +49,13 @@ public class HistorySystemServiceTest {
     }
 
     private Map<Character, Set<String>> prepareActualMap() {
+        Map<Character, Set<String>> map = new TreeMap<>();
         Set<String> lSet = Stream.of("ala").collect(Collectors.toSet());
         Set<String> aSet = Stream.of("ala", "ma").collect(Collectors.toSet());
         Set<String> mSet = Stream.of("ma").collect(Collectors.toSet());
-
-        return Map.of('l', lSet,
-                      'a', aSet,
-                      'm', mSet);
+        map.put('l', lSet);
+        map.put('a', aSet);
+        map.put('m', mSet);
+        return map;
     }
 }

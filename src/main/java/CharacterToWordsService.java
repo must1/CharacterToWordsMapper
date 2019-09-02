@@ -1,4 +1,4 @@
-import historysystem.ResultService;
+import resultservice.ResultService;
 import utils.SentenceUtils;
 import view.ApplicationMessages;
 
@@ -8,14 +8,14 @@ class CharacterToWordsService {
 
     private static final String FILE_PATH = "Result.txt";
 
-    private final ResultService historySystem;
+    private final ResultService resultService;
     private final CharacterToWordsMapper wordContainingLetterMapCreator;
     private final ApplicationMessages applicationMessages;
     private Scanner scanner;
 
-    CharacterToWordsService(ResultService historySystem, ApplicationMessages applicationMessages,
+    CharacterToWordsService(ResultService resultService, ApplicationMessages applicationMessages,
                             CharacterToWordsMapper wordContainingLetterMapCreator) {
-        this.historySystem = historySystem;
+        this.resultService = resultService;
         this.applicationMessages = applicationMessages;
         this.wordContainingLetterMapCreator = wordContainingLetterMapCreator;
         scanner = new Scanner(System.in);
@@ -28,7 +28,7 @@ class CharacterToWordsService {
         Map<Character, Set<String>> characterWithAccordingWord =
                 wordContainingLetterMapCreator.createMapWithCharacterToAccordingWords(splitPurifiedLowerCaseSentence);
 
-        historySystem.saveResult(FILE_PATH, characterWithAccordingWord, userInput);
+        resultService.saveResult(FILE_PATH, characterWithAccordingWord, userInput);
         applicationMessages.displayResult(characterWithAccordingWord);
     }
 
