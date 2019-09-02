@@ -1,9 +1,9 @@
 import java.util.*;
 import java.util.stream.IntStream;
 
-class WordContainingLetterMapCreator {
+class CharacterToWordsMapCreator {
 
-    Map<Character, Set<String>> prepareMapWithCharacterToAccordingWords(String[] splitSentence) {
+    Map<Character, Set<String>> createMapWithCharacterToAccordingWords(String[] splitSentence) {
 
         Map<Character, Set<String>> characterWithAccordingWord = new TreeMap<>();
         for (String iteratedWord : splitSentence) {

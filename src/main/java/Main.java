@@ -8,7 +8,7 @@ public class Main {
 
         HistorySystem historySystemService = new HistorySystemService();
         ApplicationMessages applicationMessages = new ConsoleMessages();
-        WordContainingLetterMapCreator wordContainingLetterMapCreator = new WordContainingLetterMapCreator();
+        CharacterToWordsMapCreator wordContainingLetterMapCreator = new CharacterToWordsMapCreator();
 
         CharacterToWordsService wordsFetcherEngine = new CharacterToWordsService(
                 historySystemService,

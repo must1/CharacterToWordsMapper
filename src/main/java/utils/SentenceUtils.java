@@ -8,7 +8,7 @@ public class SentenceUtils {
     private static final String SEPARATOR_REGEX_EXP = "\\s";
     private static final String PUNCTUATION_MARKS_REMOVER_REGEX_EXP = "\\p{P}";
 
-    public String[] getSplitPurifiedLowerCaseSentence(String sentence) {
+    public String[] getErasedFromPunctuationMarksSplitLowerCaseSentence(String sentence) {
         return erasePunctuationMarks(sentence).toLowerCase().split(SEPARATOR_REGEX_EXP);
     }
 

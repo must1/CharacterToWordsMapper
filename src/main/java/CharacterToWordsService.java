@@ -9,12 +9,12 @@ class CharacterToWordsService {
     private static final String FILE_PATH = "Result.txt";
 
     private final HistorySystem historySystem;
-    private final WordContainingLetterMapCreator wordContainingLetterMapCreator;
+    private final CharacterToWordsMapCreator wordContainingLetterMapCreator;
     private final ApplicationMessages applicationMessages;
     private Scanner scanner;
 
     CharacterToWordsService(HistorySystem historySystem, ApplicationMessages applicationMessages,
-                            WordContainingLetterMapCreator wordContainingLetterMapCreator) {
+                            CharacterToWordsMapCreator wordContainingLetterMapCreator) {
         this.historySystem = historySystem;
         this.applicationMessages = applicationMessages;
         this.wordContainingLetterMapCreator = wordContainingLetterMapCreator;
@@ -24,9 +24,9 @@ class CharacterToWordsService {
     void executeEngine() {
         String userInput = getUserInput();
 
-        String[] splitPurifiedLowerCaseSentence = SentenceUtils.getSplitPurifiedLowerCaseSentence(userInput);
+        String[] splitPurifiedLowerCaseSentence = SentenceUtils.getErasedFromPunctuationMarksSplitLowerCaseSentence(userInput);
         Map<Character, Set<String>> characterWithAccordingWord =
-                wordContainingLetterMapCreator.prepareMapWithCharacterToAccordingWords(splitPurifiedLowerCaseSentence);
+                wordContainingLetterMapCreator.createMapWithCharacterToAccordingWords(splitPurifiedLowerCaseSentence);
 
         historySystem.overwriteFileWithGivenResult(FILE_PATH, characterWithAccordingWord, userInput);
         applicationMessages.writeResult(characterWithAccordingWord);
